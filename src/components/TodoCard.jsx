@@ -3,9 +3,8 @@
 import React from 'react';
 
 function TodoCard({
-  id, taskName, taskDescription, isDone, handleEdit, handleDelete, index,
+  id, taskName, taskDescription, isDone, handleEdit, handleDelete, index, handleDone,
 }) {
-  console.log(isDone);
   const colors = [
     {
       primaryColor: '#5D93E1',
@@ -32,13 +31,14 @@ function TodoCard({
     <div className="card-wrapper mr-5">
       <div className="card-top" style={{ backgroundColor: colors[index % 5].primaryColor }} />
       <div className="task-holder">
-        <span className="card-header" style={{ backgroundColor: colors[index % 5].secondaryColor, borderRadius: '10px' }}>{taskName}</span>
-        <p className="mt-3">{taskDescription}</p>
+        <span className={isDone ? 'card-header done' : 'card-header'} style={{ backgroundColor: colors[index % 5].secondaryColor, borderRadius: '10px' }}>{taskName}</span>
+        <p className={isDone ? 'mt-3 done' : 'mt-3'}>{taskDescription}</p>
 
         <div style={{
           position: 'absolute', right: '20px', bottom: '20px',
         }}
         >
+          <i className={isDone ? 'fa-solid fa-square-check' : 'fa-regular fa-square-check'} style={{ color: colors[index % 5].primaryColor, cursor: 'pointer', padding: '5px' }} onClick={() => handleDone(id)} />
           <i className="far fa-edit mr-3" style={{ color: colors[index % 5].primaryColor, cursor: 'pointer', padding: '5px' }} onClick={() => handleEdit(id)} />
           <i className="fas fa-trash-alt" style={{ color: colors[index % 5].primaryColor, cursor: 'pointer', padding: '5px' }} onClick={() => handleDelete(id)} />
         </div>
