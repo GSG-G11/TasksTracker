@@ -39,6 +39,7 @@
     display : flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
   }
   
   .card-header{
@@ -50,6 +51,9 @@
     height: 30px;
     padding: 3px 3px !important;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
   }
   
   .task-container{
@@ -60,4 +64,17 @@
     flex-wrap: wrap;
     background-color: #F6F7F8;
     padding : 20px 100px;
+  }
+
+  .mt-3{
+    max-width: 100%;
+    max-height: 4.5rem;
+    word-break: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .alert{
+    margin-top:20vh;
+    text-align: center;
   }

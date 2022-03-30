@@ -1,9 +1,11 @@
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Alert } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddTodoForm from './components/AddTodoForm';
 import CardsContainer from './components/CardsContainer';
+import Header from './components/Header';
 import './App.css';
 
 class App extends Component {
@@ -19,7 +21,12 @@ class App extends Component {
   }
 
   toggle = () => {
-    this.setState((prevState) => ({ modal: !prevState.modal }));
+    this.setState((prevState) => ({
+      modal: !prevState.modal,
+      taskName: '',
+      taskDescription: '',
+      editIndex: -1,
+    }));
   };
 
   handleChange = (e) => {
@@ -32,6 +39,7 @@ class App extends Component {
     const {
       todoListArr, editIndex, taskName, taskDescription,
     } = this.state;
+    if (!(taskName || taskDescription)) return this.toggle();
     if (editIndex === -1) {
       todoListArr.push({
         id: uuidv4(),
@@ -39,8 +47,10 @@ class App extends Component {
         taskDescription,
         isDone: false,
       });
+    } else {
+      todoListArr[editIndex] = { ...todoListArr[editIndex], taskName, taskDescription };
     }
-    this.setState({
+    return this.setState({
       modal: false,
       taskName: '',
       taskDescription: '',
@@ -55,23 +65,36 @@ class App extends Component {
     this.setState({ todoListArr: filteredArr });
   };
 
+  handleEdit = (todoId) => {
+    const { todoListArr } = this.state;
+    const editIndex = todoListArr.findIndex(({ id }) => id === todoId);
+    const { taskName, taskDescription } = todoListArr[editIndex];
+    this.setState({
+      taskName, taskDescription, modal: true, editIndex,
+    });
+  };
+
   render() {
     const {
       modal, taskName, taskDescription, todoListArr,
     } = this.state;
     return (
       <>
-        <div className="header text-center">
-          <div>
-            <h1>Tasks Tracker</h1>
-            <button className="btn btn-primary" type="button" onClick={this.toggle}>Add Task</button>
-          </div>
-        </div>
-        <CardsContainer
-          todoListArr={todoListArr}
-          handleEdit={this.handleEdit}
-          handleDelete={this.handleDelete}
-        />
+        <Header toggle={this.toggle} />
+        {
+          todoListArr.length === 0 ? (
+            <Alert color="secondary" className="alert">
+              No Tasks Added!
+            </Alert>
+          ) : (
+            <CardsContainer
+              todoListArr={todoListArr}
+              handleEdit={this.handleEdit}
+              handleDelete={this.handleDelete}
+            />
+          )
+        }
+
         <AddTodoForm
           modal={modal}
           toggle={this.toggle}
