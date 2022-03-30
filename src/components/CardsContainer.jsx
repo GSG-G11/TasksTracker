@@ -1,7 +1,9 @@
 import React from 'react';
 import TodoCard from './TodoCard';
 
-function CardsContainer({ todoListArr, handleEdit, handleDelete }) {
+function CardsContainer({
+  todoListArr, handleEdit, handleDelete, handleDone,
+}) {
   return (
     <div className="task-container">
       { todoListArr.map(({
@@ -14,6 +16,7 @@ function CardsContainer({ todoListArr, handleEdit, handleDelete }) {
           isDone={isDone}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
+          handleDone={handleDone}
           index={index}
           key={id}
         />

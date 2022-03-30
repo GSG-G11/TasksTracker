@@ -74,6 +74,15 @@ class App extends Component {
     });
   };
 
+  handleDone = (todoId) => {
+    const { todoListArr } = this.state;
+    const doneIndex = todoListArr.findIndex(({ id }) => id === todoId);
+    todoListArr[doneIndex].isDone = !todoListArr[doneIndex].isDone;
+    this.setState({
+      todoListArr,
+    });
+  };
+
   render() {
     const {
       modal, taskName, taskDescription, todoListArr,
@@ -91,6 +100,7 @@ class App extends Component {
               todoListArr={todoListArr}
               handleEdit={this.handleEdit}
               handleDelete={this.handleDelete}
+              handleDone={this.handleDone}
             />
           )
         }
