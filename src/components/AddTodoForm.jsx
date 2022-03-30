@@ -4,18 +4,17 @@ import {
 } from 'reactstrap';
 
 function AddTodoForm({
-  handleChange, handleSubmit, toggle, taskName, taskDescription,
+  handleChange, handleSubmit, toggle, taskName, taskDescription, modal,
 }) {
   return (
     <div>
-      <Modal>
-        <ModalHeader>Modal title</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Task</ModalHeader>
         <ModalBody>
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="form-group">
               <label htmlFor="taskName">
                 Task Name
-
                 <input type="text" onChange={handleChange} name="taskName" id="taskName" value={taskName} required className="form-control" />
               </label>
             </div>
@@ -29,7 +28,7 @@ function AddTodoForm({
           </form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary">Create</Button>
+          <Button color="primary" onClick={handleSubmit}>Create</Button>
           <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
