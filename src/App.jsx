@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddTodoForm from './components/AddTodoForm';
+import TodoCard from './components/TodoCard';
 import './App.css';
 
 class App extends Component {
@@ -59,6 +60,15 @@ class App extends Component {
           </div>
         </div>
         <hr />
+        <TodoCard
+          id={0}
+          taskName={taskName}
+          taskDescription={taskDescription}
+          isDone={false}
+          handleEdit={this.handleEdit}
+          handleDelete={this.handleDelete}
+          index={0}
+        />
         <AddTodoForm
           modal={modal}
           toggle={this.toggle}
