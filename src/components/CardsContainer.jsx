@@ -15,6 +15,7 @@ function CardsContainer({ todoListArr, handleEdit, handleDelete }) {
           handleEdit={handleEdit}
           handleDelete={handleDelete}
           index={index}
+          key={id}
         />
       ))}
     </div>
