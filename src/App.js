@@ -83,8 +83,8 @@ class App extends Component {
         <Header toggle={this.toggle} />
         {
           todoListArr.length === 0 ? (
-            <Alert color="secondary" className="alert">
-              No Tasks Added!
+            <Alert color="light" className="alert">
+              <h3>No Tasks Added!</h3>
             </Alert>
           ) : (
             <CardsContainer
