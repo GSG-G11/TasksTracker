@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AddTodoForm from './components/AddTodoForm';
-import TodoCard from './components/TodoCard';
+import CardsContainer from './components/CardsContainer';
 import './App.css';
 
 class App extends Component {
@@ -50,7 +50,9 @@ class App extends Component {
   };
 
   render() {
-    const { modal, taskName, taskDescription } = this.state;
+    const {
+      modal, taskName, taskDescription, todoListArr,
+    } = this.state;
     return (
       <>
         <div className="header text-center">
@@ -59,15 +61,10 @@ class App extends Component {
             <button className="btn btn-primary" type="button" onClick={this.toggle}>Add Task</button>
           </div>
         </div>
-        <hr />
-        <TodoCard
-          id={0}
-          taskName={taskName}
-          taskDescription={taskDescription}
-          isDone={false}
+        <CardsContainer
+          todoListArr={todoListArr}
           handleEdit={this.handleEdit}
           handleDelete={this.handleDelete}
-          index={0}
         />
         <AddTodoForm
           modal={modal}
