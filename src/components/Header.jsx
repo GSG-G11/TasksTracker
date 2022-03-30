@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Header({ toggle }) {
   return (
@@ -10,5 +11,9 @@ function Header({ toggle }) {
     </div>
   );
 }
+
+Header.propTypes = {
+  toggle: PropTypes.func.isRequired,
+};
 
 export default Header;

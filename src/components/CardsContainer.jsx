@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TodoCard from './TodoCard';
 
 function CardsContainer({
@@ -24,5 +25,17 @@ function CardsContainer({
     </div>
   );
 }
+
+CardsContainer.propTypes = {
+  handleEdit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleDone: PropTypes.func.isRequired,
+  todoListArr: PropTypes.arrayOf({
+    id: PropTypes.string,
+    isDone: PropTypes.bool,
+    taskName: PropTypes.string,
+    taskDescription: PropTypes.string,
+  }).isRequired,
+};
 
 export default CardsContainer;

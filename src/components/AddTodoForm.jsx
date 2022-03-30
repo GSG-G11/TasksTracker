@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
@@ -35,5 +36,14 @@ function AddTodoForm({
     </div>
   );
 }
+
+AddTodoForm.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
+  taskName: PropTypes.string.isRequired,
+  taskDescription: PropTypes.string.isRequired,
+  modal: PropTypes.bool.isRequired,
+};
 
 export default AddTodoForm;
