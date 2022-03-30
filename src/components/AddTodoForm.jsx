@@ -13,14 +13,14 @@ function AddTodoForm({
         <ModalBody>
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="form-group">
-              <label htmlFor="taskName">
+              <label htmlFor="taskName" style={{ width: '100%' }}>
                 Task Name
                 <input type="text" onChange={handleChange} name="taskName" id="taskName" value={taskName} required className="form-control" />
               </label>
             </div>
             <br />
             <div className="form-group">
-              <label htmlFor="taskDescription">
+              <label htmlFor="taskDescription" style={{ width: '100%' }}>
                 Description
                 <textarea rows="5" onChange={handleChange} name="taskDescription" id="taskDescription" value={taskDescription} required className="form-control" />
               </label>
