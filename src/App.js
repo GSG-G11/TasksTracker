@@ -49,6 +49,12 @@ class App extends Component {
     });
   };
 
+  handleDelete = (todoId) => {
+    const { todoListArr } = this.state;
+    const filteredArr = todoListArr.filter(({ id }) => todoId !== id);
+    this.setState({ todoListArr: filteredArr });
+  };
+
   render() {
     const {
       modal, taskName, taskDescription, todoListArr,
