@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function TodoCard({
   id, taskName, taskDescription, isDone, handleEdit, handleDelete, index, handleDone,
@@ -46,5 +47,16 @@ function TodoCard({
     </div>
   );
 }
+
+TodoCard.propTypes = {
+  handleEdit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleDone: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  isDone: PropTypes.bool.isRequired,
+  taskName: PropTypes.string.isRequired,
+  taskDescription: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+};
 
 export default TodoCard;
