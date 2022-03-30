@@ -74,6 +74,15 @@ class App extends Component {
     });
   };
 
+  handleDone = (todoId) => {
+    const { todoListArr } = this.state;
+    const doneIndex = todoListArr.findIndex(({ id }) => id === todoId);
+    todoListArr[doneIndex].isDone = !todoListArr[doneIndex].isDone;
+    this.setState({
+      todoListArr,
+    });
+  };
+
   render() {
     const {
       modal, taskName, taskDescription, todoListArr,
@@ -83,14 +92,15 @@ class App extends Component {
         <Header toggle={this.toggle} />
         {
           todoListArr.length === 0 ? (
-            <Alert color="secondary" className="alert">
-              No Tasks Added!
+            <Alert color="light" className="alert">
+              <h3>No Tasks Added!</h3>
             </Alert>
           ) : (
             <CardsContainer
               todoListArr={todoListArr}
               handleEdit={this.handleEdit}
               handleDelete={this.handleDelete}
+              handleDone={this.handleDone}
             />
           )
         }
