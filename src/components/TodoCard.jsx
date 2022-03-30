@@ -35,7 +35,10 @@ function TodoCard({
         <span className="card-header" style={{ 'background-color': colors[index % 5].secondaryColor, 'border-radius': '10px' }}>{taskName}</span>
         <p className="mt-3">{taskDescription}</p>
 
-        <div style={{ position: 'absolute', right: '20px', bottom: '20px' }}>
+        <div style={{
+          position: 'absolute', right: '20px', bottom: '20px',
+        }}
+        >
           <i className="far fa-edit mr-3" style={{ color: colors[index % 5].primaryColor, cursor: 'pointer' }} onClick={() => handleEdit(id)} />
           <i className="fas fa-trash-alt" style={{ color: colors[index % 5].primaryColor, cursor: 'pointer' }} onClick={() => handleDelete(id)} />
         </div>
