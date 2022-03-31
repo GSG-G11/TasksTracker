@@ -30,12 +30,12 @@ CardsContainer.propTypes = {
   handleEdit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleDone: PropTypes.func.isRequired,
-  todoListArr: PropTypes.arrayOf({
+  todoListArr: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
-    isDone: PropTypes.bool,
     taskName: PropTypes.string,
     taskDescription: PropTypes.string,
-  }).isRequired,
+    isDone: PropTypes.bool,
+  })).isRequired,
 };
 
 export default CardsContainer;

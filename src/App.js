@@ -1,11 +1,10 @@
-/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Alert } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AddTodoForm from './components/AddTodoForm';
-import CardsContainer from './components/CardsContainer';
-import Header from './components/Header';
+import {
+  AddTodoForm, CardsContainer, Header, TasksFilter,
+} from './components';
 import './App.css';
 
 class App extends Component {
@@ -17,6 +16,7 @@ class App extends Component {
       taskDescription: '',
       editIndex: -1,
       todoListArr: [],
+      selected: 'all',
     };
   }
 
@@ -30,6 +30,7 @@ class App extends Component {
   };
 
   handleChange = (e) => {
+    if (!e.target) return;
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -85,11 +86,12 @@ class App extends Component {
 
   render() {
     const {
-      modal, taskName, taskDescription, todoListArr,
+      modal, taskName, taskDescription, todoListArr, selected,
     } = this.state;
     return (
       <>
         <Header toggle={this.toggle} />
+        <TasksFilter handleChange={this.handleChange} selected={selected} />
         {
           todoListArr.length === 0 ? (
             <Alert color="light" className="alert">
@@ -97,7 +99,7 @@ class App extends Component {
             </Alert>
           ) : (
             <CardsContainer
-              todoListArr={todoListArr}
+              todoListArr={todoListArr.filter(({ isDone }) => (selected === 'all') || (selected === 'done' && isDone) || (selected === 'notdone' && !isDone))}
               handleEdit={this.handleEdit}
               handleDelete={this.handleDelete}
               handleDone={this.handleDone}
