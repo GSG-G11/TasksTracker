@@ -82,3 +82,16 @@
   -webkit-text-decoration-color: red;
   text-decoration-color: red;
 }
+
+
+@media only screen and (max-width: 600px) {
+  .task-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px 5px 20px 5px;
+  }
+  .card-wrapper {
+    margin: 10px auto;
+  }
+}
